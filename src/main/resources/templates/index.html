@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+</head>
+<body><!--
+<script language="JavaScript">
+    function reg_frm(){
+        //获取用户输入的值
+        var userId = document.getElementById("id").value;
+        var password = document.getElementById("psw").value;
+        //拼接url
+        var url = "/reg/?";
+        url += "userId="+userId+"&&password="+password;
+        //重新定位url
+        window.location = url;
+    }
+    function login_frm(){
+        //获取用户输入的值
+        var userId = document.getElementById("id").value;
+        var password = document.getElementById("psw").value;
+        //拼接url
+        var url = "/login/?";
+        url += "userId="+userId+"&&password="+password;
+        //重新定位url
+        window.location = url;
+    }
+</script>
+
+<form action="#"  method="post">
+<p>UserId: <input id="id" type="text" name="id" th:field="${user.userId}" /></p>
+<p>Password: <input id="psw" type="password" name="psw" th:field="${user.password}" /></p>
+    <label class="checkbox">
+        <input type="checkbox" value="remember-me" /> 记住我
+    </label>
+    <br>
+
+    <input type="button" value="注册" onclick="reg_frm();">
+
+    <input type="button" value="登录" onclick="login_frm();">
+
+
+</form>
+<br>
+<a th:if="${user}==null||${ticket.getStatus()}==1">欢迎你，<a href="regAndLogin.html">请登录/注册</a></a>
+<a th:if="${user}!=null&amp;&amp;${ticket.getStatus()==0}" >欢迎你，<p th:text="${user.getUserId()}"/></a>
+
+
+
+<li th:if="${user}!=null">222</li>
+<li th:if="ticket.getStatus()==0">222</li>
+<a th:if="${user}!=null and ${ticket.getStatus()==0}" >欢迎你，<p th:text="${user.getUserId()}"/></a>
+<a th:if="${user==null}">222</a>
+<a th:if="${user!=null}">22233333</a>
+1
+<br>
+<span th:each="cookie :${#httpServletRequest.getCookies()}"
+
+      th:if="${cookie.getName().equals('ticket')} "
+
+      th:text="${cookie.getValue()}"></span>-->
+<a th:if="${user.getUserId()!=null}">欢迎你，<p th:text="${user.getUserId()}"/></a>
+<a th:if="${user.getUserId()==null}">欢迎你，<a href="/regAndLogin">请登录/注册</a></a>
+
+<br>
+<br>
+<p>欢迎来到票据交易中心</p>
+<a th:if="${user.getUserId()!=null}">
+<a href="/greeting"><input type="button" name="test1" value="进行票据交易"> </a>
+<a href="/selectById"><input type="button" name="test" value="根据id查询信息"> </a>
+    <a href="/unhandledDeal"><input type="button" name="test2" value="查看未处理的交易"> </a>
+    </a>
+</body>
+</html>

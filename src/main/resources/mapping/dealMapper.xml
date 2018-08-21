@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.summer.bus_side.dao.DealMapper">
+  <resultMap id="BaseResultMap" type="cn.summer.bus_side.domain.Deal">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="bus_id" jdbcType="VARCHAR" property="busId" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="trd_dir" jdbcType="CHAR" property="trdDir" />
+    <result column="msg_type" jdbcType="VARCHAR" property="msgType" />
+    <result column="req_branch" jdbcType="CHAR" property="reqBranch" />
+    <result column="req_user" jdbcType="CHAR" property="reqUser" />
+    <result column="cp_branch" jdbcType="CHAR" property="cpBranch" />
+    <result column="cp_user" jdbcType="CHAR" property="cpUser" />
+    <result column="cd_type" jdbcType="CHAR" property="cdType" />
+    <result column="drft_nm" jdbcType="CHAR" property="drftNm" />
+    <result column="sum_amt" jdbcType="CHAR" property="sumAmt" />
+    <result column="quote_time" jdbcType="TIMESTAMP" property="quoteTime" />
+    <result column="set_time" jdbcType="TIMESTAMP" property="setTime" />
+    <result column="set_amt" jdbcType="CHAR" property="setAmt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, bus_id, status, trd_dir, msg_type, req_branch, req_user, cp_branch, cp_user, 
+    cd_type, drft_nm, sum_amt, quote_time, set_time, set_amt
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from deal
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from deal
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.summer.bus_side.domain.Deal">
+    insert into deal (id, bus_id, status, 
+      trd_dir, msg_type, req_branch, 
+      req_user, cp_branch, cp_user, cd_type, 
+      drft_nm, sum_amt, quote_time, 
+      set_time, set_amt)
+    values (#{id,jdbcType=INTEGER}, #{busId,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, 
+      #{trdDir,jdbcType=CHAR}, #{msgType,jdbcType=VARCHAR}, #{reqBranch,jdbcType=CHAR}, 
+      #{reqUser,jdbcType=CHAR}, #{cpBranch,jdbcType=CHAR}, #{cpUser,jdbcType=CHAR}, #{cdType,jdbcType=CHAR}, 
+      #{drftNm,jdbcType=CHAR}, #{sumAmt,jdbcType=CHAR}, #{quoteTime,jdbcType=TIMESTAMP}, 
+      #{setTime,jdbcType=TIMESTAMP}, #{setAmt,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.summer.bus_side.domain.Deal">
+    insert into deal
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="busId != null">
+        bus_id,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="trdDir != null">
+        trd_dir,
+      </if>
+      <if test="msgType != null">
+        msg_type,
+      </if>
+      <if test="reqBranch != null">
+        req_branch,
+      </if>
+      <if test="reqUser != null">
+        req_user,
+      </if>
+      <if test="cpBranch != null">
+        cp_branch,
+      </if>
+      <if test="cpUser != null">
+        cp_user,
+      </if>
+      <if test="cdType != null">
+        cd_type,
+      </if>
+      <if test="drftNm != null">
+        drft_nm,
+      </if>
+      <if test="sumAmt != null">
+        sum_amt,
+      </if>
+      <if test="quoteTime != null">
+        quote_time,
+      </if>
+      <if test="setTime != null">
+        set_time,
+      </if>
+      <if test="setAmt != null">
+        set_amt,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="busId != null">
+        #{busId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="trdDir != null">
+        #{trdDir,jdbcType=CHAR},
+      </if>
+      <if test="msgType != null">
+        #{msgType,jdbcType=VARCHAR},
+      </if>
+      <if test="reqBranch != null">
+        #{reqBranch,jdbcType=CHAR},
+      </if>
+      <if test="reqUser != null">
+        #{reqUser,jdbcType=CHAR},
+      </if>
+      <if test="cpBranch != null">
+        #{cpBranch,jdbcType=CHAR},
+      </if>
+      <if test="cpUser != null">
+        #{cpUser,jdbcType=CHAR},
+      </if>
+      <if test="cdType != null">
+        #{cdType,jdbcType=CHAR},
+      </if>
+      <if test="drftNm != null">
+        #{drftNm,jdbcType=CHAR},
+      </if>
+      <if test="sumAmt != null">
+        #{sumAmt,jdbcType=CHAR},
+      </if>
+      <if test="quoteTime != null">
+        #{quoteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="setTime != null">
+        #{setTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="setAmt != null">
+        #{setAmt,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.summer.bus_side.domain.Deal">
+    update deal
+    <set>
+      <if test="busId != null">
+        bus_id = #{busId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="trdDir != null">
+        trd_dir = #{trdDir,jdbcType=CHAR},
+      </if>
+      <if test="msgType != null">
+        msg_type = #{msgType,jdbcType=VARCHAR},
+      </if>
+      <if test="reqBranch != null">
+        req_branch = #{reqBranch,jdbcType=CHAR},
+      </if>
+      <if test="reqUser != null">
+        req_user = #{reqUser,jdbcType=CHAR},
+      </if>
+      <if test="cpBranch != null">
+        cp_branch = #{cpBranch,jdbcType=CHAR},
+      </if>
+      <if test="cpUser != null">
+        cp_user = #{cpUser,jdbcType=CHAR},
+      </if>
+      <if test="cdType != null">
+        cd_type = #{cdType,jdbcType=CHAR},
+      </if>
+      <if test="drftNm != null">
+        drft_nm = #{drftNm,jdbcType=CHAR},
+      </if>
+      <if test="sumAmt != null">
+        sum_amt = #{sumAmt,jdbcType=CHAR},
+      </if>
+      <if test="quoteTime != null">
+        quote_time = #{quoteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="setTime != null">
+        set_time = #{setTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="setAmt != null">
+        set_amt = #{setAmt,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.summer.bus_side.domain.Deal">
+    update deal
+    set bus_id = #{busId,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      trd_dir = #{trdDir,jdbcType=CHAR},
+      msg_type = #{msgType,jdbcType=VARCHAR},
+      req_branch = #{reqBranch,jdbcType=CHAR},
+      req_user = #{reqUser,jdbcType=CHAR},
+      cp_branch = #{cpBranch,jdbcType=CHAR},
+      cp_user = #{cpUser,jdbcType=CHAR},
+      cd_type = #{cdType,jdbcType=CHAR},
+      drft_nm = #{drftNm,jdbcType=CHAR},
+      sum_amt = #{sumAmt,jdbcType=CHAR},
+      quote_time = #{quoteTime,jdbcType=TIMESTAMP},
+      set_time = #{setTime,jdbcType=TIMESTAMP},
+      set_amt = #{setAmt,jdbcType=CHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByBusId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from deal
+    where bus_id = #{bus_id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByStatus" parameterType="java.lang.Byte" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from deal
+    where status = #{status,jdbcType=TINYINT}
+  </select>
+
+
+  <update id="updateStatus" parameterType="cn.summer.bus_side.domain.Deal">
+    update deal
+    set status =0
+    where bus_id = #{bus_id,jdbcType=VARCHAR} and status=1 and  trd_dir="TDD02"
+  </update>
+</mapper>

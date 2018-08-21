@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+还有<a th:text="${deals.size()}"></a>笔交易未处理。
+<br>
+
+<div th:each="item : ${deals}">
+    <form action="#" th:action="@{/handleDeal}" th:object="${deal}"  method="post">
+        <h1>开始处理</h1>
+        交易信息
+        <br>
+        <p>业务编号: <input type="text" th:attr="value=${item.busId}"  th:name="busId"/></p>
+        机构信息
+        <br>
+        <p>本人机构代码: <input type="text" th:value="${item.reqBranch}"  th:name="reqBranch"/></p>
+        <p>本人交易员id: <input type="text" th:value="${item.reqUser}" th:name="reqUser" /></p>
+        <p>对方机构代码: <input type="text" th:value="${item.cpBranch}" th:name="cpBranch" /></p>
+        <p>对方交易员id: <input type="text" th:value="${item.cpUser}" th:name="cpUser" /></p>
+        <br>
+        报价信息
+        <br>
+        <p>票据种类: <input type="text" th:value="${item.cdType}" th:name="cdType" /></p>
+        <p>票据张数: <input type="text"  th:value="${item.drftNm}" th:name="drftNm" /></p>
+        <p>票面总额: <input type="text" th:value="${item.sumAmt}" th:name="sumAmt" /></p>
+        <p>报价有效期: <input type="text" th:value="${item.quoteTime}" th:name="quoteTime" /></p>
+        <p>结算金额: <input type="text"  th:value="${item.setAmt}" th:name="setAmt" /></p>
+        <p>最晚清算时间: <input type="text" th:value="${item.setTime}" th:name="setTime" /></p>
+        <p><input type="submit" th:name="choice" value="不同意报价，提交修改" /></p>
+        <p><input type="submit" th:name="choice" value="同意报价，交易成功" /></p>
+        <p><input type="submit" th:name="choice" value="不同意报价，终止交易" /></p>
+    </form>
+
+
+</div>
+
+
+    </body>
+    </html>

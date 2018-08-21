@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<h1>Result</h1>
+<div th:each="item:${deals}">
+
+<h1>交易信息</h1>
+<p>业务编号: <a th:text="${item.busId}" ></a></p>
+机构信息
+<p>本人机构代码: <a th:text=" ${item.reqBranch}" ></a></p>
+<p>本人交易员id:<a th:text=" ${item.reqUser}" ></a></p>
+<p>对方机构代码:<a th:text=" ${item.cpBranch}" ></a></p>
+<p>对方交易员id: <a th:text=" ${item.cpUser}" ></a></p>
+报价信息
+<p>票据种类:<a th:text=" ${item.cdType}" ></a></p>
+<p>票据张数: <a th:text=" ${item.drftNm}" ></a></p>
+<p>票面总额: <a th:text=" ${item.sumAmt}" ></a></p>
+<p>报价有效期: <a th:text=" ${item.quoteTime}" ></a></p>
+<p>结算金额:<a th:text=" ${item.sumAmt}" ></a></p>
+<p>最晚清算时间: <a th:text=" ${item.setTime}" ></a></p>
+</div>
+<a href="/selectById">重新查询</a>
+<br>
+<a href="/">回到首页</a>
+</body>
+</html>

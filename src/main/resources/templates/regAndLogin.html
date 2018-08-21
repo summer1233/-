@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+</head>
+<body>
+<script language="JavaScript">
+    function reg_frm(){
+        //获取用户输入的值
+        var userId = document.getElementById("id").value;
+        var password = document.getElementById("psw").value;
+        //拼接url
+        var url = "/reg/?";
+        url += "userId="+userId+"&&password="+password;
+        //重新定位url
+        window.location = url;
+    }
+    function login_frm(){
+        //获取用户输入的值
+        var userId = document.getElementById("id").value;
+        var password = document.getElementById("psw").value;
+        //拼接url
+        var url = "/login/?";
+        url += "userId="+userId+"&&password="+password;
+        //重新定位url
+        window.location = url;
+    }
+</script>
+
+<form action="#"  method="post">
+    <p>UserId: <input id="id" type="text" name="id" /></p>
+    <p>Password: <input id="psw" type="password" name="psw"  /></p>
+    <!--
+    <label class="checkbox">
+        <input type="checkbox" value="remember-me" /> 记住我
+    </label>-->
+    <br>
+
+    <input type="button" value="注册" onclick="reg_frm();">
+
+    <input type="button" value="登录" onclick="login_frm();">
+
+
+</form>
+<br>
+</body>
+</html>

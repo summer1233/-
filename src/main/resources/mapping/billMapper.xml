@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.summer.bus_side.dao.BillMapper">
+  <resultMap id="BaseResultMap" type="cn.summer.bus_side.domain.Bill">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="bus_id" jdbcType="VARCHAR" property="busId" />
+    <result column="cd_no" jdbcType="CHAR" property="cdNo" />
+    <result column="cd_amt" jdbcType="VARCHAR" property="cdAmt" />
+    <result column="due_dt" jdbcType="TIMESTAMP" property="dueDt" />
+    <result column="pay_int" jdbcType="CHAR" property="payInt" />
+    <result column="set_amt" jdbcType="CHAR" property="setAmt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, bus_id, cd_no, cd_amt, due_dt, pay_int, set_amt
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bill
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bill
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.summer.bus_side.domain.Bill">
+    insert into bill (id, bus_id, cd_no, 
+      cd_amt, due_dt, pay_int, 
+      set_amt)
+    values (#{id,jdbcType=INTEGER}, #{busId,jdbcType=VARCHAR}, #{cdNo,jdbcType=CHAR}, 
+      #{cdAmt,jdbcType=VARCHAR}, #{dueDt,jdbcType=TIMESTAMP}, #{payInt,jdbcType=CHAR}, 
+      #{setAmt,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.summer.bus_side.domain.Bill">
+    insert into bill
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="busId != null">
+        bus_id,
+      </if>
+      <if test="cdNo != null">
+        cd_no,
+      </if>
+      <if test="cdAmt != null">
+        cd_amt,
+      </if>
+      <if test="dueDt != null">
+        due_dt,
+      </if>
+      <if test="payInt != null">
+        pay_int,
+      </if>
+      <if test="setAmt != null">
+        set_amt,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="busId != null">
+        #{busId,jdbcType=VARCHAR},
+      </if>
+      <if test="cdNo != null">
+        #{cdNo,jdbcType=CHAR},
+      </if>
+      <if test="cdAmt != null">
+        #{cdAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="dueDt != null">
+        #{dueDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payInt != null">
+        #{payInt,jdbcType=CHAR},
+      </if>
+      <if test="setAmt != null">
+        #{setAmt,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.summer.bus_side.domain.Bill">
+    update bill
+    <set>
+      <if test="busId != null">
+        bus_id = #{busId,jdbcType=VARCHAR},
+      </if>
+      <if test="cdNo != null">
+        cd_no = #{cdNo,jdbcType=CHAR},
+      </if>
+      <if test="cdAmt != null">
+        cd_amt = #{cdAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="dueDt != null">
+        due_dt = #{dueDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payInt != null">
+        pay_int = #{payInt,jdbcType=CHAR},
+      </if>
+      <if test="setAmt != null">
+        set_amt = #{setAmt,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.summer.bus_side.domain.Bill">
+    update bill
+    set bus_id = #{busId,jdbcType=VARCHAR},
+      cd_no = #{cdNo,jdbcType=CHAR},
+      cd_amt = #{cdAmt,jdbcType=VARCHAR},
+      due_dt = #{dueDt,jdbcType=TIMESTAMP},
+      pay_int = #{payInt,jdbcType=CHAR},
+      set_amt = #{setAmt,jdbcType=CHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

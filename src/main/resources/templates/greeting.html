@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>票据交易</h1>
+<form action="#" th:action="@{/greeting}" th:object="${deal}" method="post">
+    交易信息
+    <br>
+    <p>业务编号: <input type="text" th:field="*{busId}" /></p>
+
+    机构信息
+    <br>
+    <span th:field="*{trdDir}"></span>
+    <p>本人机构代码: <input type="text" th:field="*{reqBranch}" /></p>
+    <p>本人交易员id: <input type="text" th:field="*{reqUser}" /></p>
+    <p>对方机构代码: <input type="text" th:field="*{cpBranch}" /></p>
+    <p>对方交易员id: <input type="text" th:field="*{cpUser}" /></p>
+    <br>
+    报价信息
+    <br>
+    <p>票据种类: <input type="text" th:field="*{cdType}" /></p>
+    <p>票据张数: <input type="text" name="bill_num" th:field="*{drftNm}" /></p>
+    <p>票面总额: <input type="text" th:field="*{sumAmt}" /></p>
+    <p>报价有效期: <input type="text" th:field="*{quoteTime}" /></p>
+    <p>结算金额: <input type="text"  th:field="*{setAmt}" /></p>
+    <p>最晚清算时间: <input type="text" th:field="*{setTime}" /></p>
+
+    <br>
+
+
+    <!--
+    <p>票据号码: <input type="text" th:field="*{cdNo}" /></p>
+    <p>票据金额: <input type="text" th:field="*{CdAmt}" /></p>
+    <p>票据到期日: <input type="text" th:field="*{DueDt}" /></p>
+    <p>应付利息: <input type="text" th:field="*{PayInt}" /></p>
+    <p>单张结算金额: <input type="text" th:field="*{SetAmt}" /></p>
+-->
+    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+</form>
+<br>
+<a href="/">回到首页</a>
+
+
+</body>
+</html>
